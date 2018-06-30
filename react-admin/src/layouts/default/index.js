@@ -19,7 +19,7 @@ class Layout extends Component {
           <nav className="navbar navbar-expand-xl">
             <div className="container">
               <Link className="navbar-brand" to="/">
-                <img src={require('assets/images/logo.png')} alt="" />
+                <img src={ require('assets/images/logo.png') } alt="" />
               </Link>
 
               <div ref="icon" className="nav-icon" data-toggle="collapse" data-target="#navbarText">
@@ -32,10 +32,10 @@ class Layout extends Component {
               <div className="collapse navbar-collapse" id="navbarText">
                 <ul className="navbar-nav mr-auto">
                   <li className="nav-item">
-                    <Link className="nav-link" to="/invoices">Invoices</Link>
+                    <Link className="nav-link" to="/users">Users</Link>
                   </li>
                   <li className="nav-item">
-                    <Link className="nav-link" to="/users">Users</Link>
+                    <Link className="nav-link" to="/tasks">Tasks</Link>
                   </li>
                   <li className="nav-item">
                     <Link className="nav-link" to="/clients">Clients</Link>

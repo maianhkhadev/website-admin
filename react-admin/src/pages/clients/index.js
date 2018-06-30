@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
+// ROUTE
+import { Link } from 'react-router-dom'
 // STORE
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { requestHelloWorld } from '@/store/actions'
+import { requestUsers } from '@/store/actions'
 // LAYOUT
 import Layout from '@/layouts/default/index'
 
@@ -13,58 +15,48 @@ class Page extends Component {
   }
 
   componentDidMount() {
-    this.props.requestHelloWorld()
+    this.props.requestUsers()
   }
 
   render() {
+    let self = this
+
     return (
       <Layout>
-        <div className="page page-clients">
+        <div className="page page-users">
           <div className="container">
-            <div className="page-sidebar">
-              <div className="row">
-                <div className="col-xl-12">
-                  <div className="block-data-main">
-                    <div className="number">1000</div>
-                    <div className="text">total clients</div>
+            <div className="row">
+              <div className="col-xl-12">
+                <div className="block-table block-table-users">
+                  <div className="block-header">
+                    <a>Name</a>
+                    <a>Email</a>
+                    <a>Phone</a>
+                    <a></a>
                   </div>
-                </div>
-                <div className="col-xl-6 col-4">
-                  <div className="block-data">
-                    <div className="text">Retail</div>
-                    <div className="number">12</div>
-                  </div>
-                </div>
-                <div className="col-xl-6 col-4">
-                  <div className="block-data">
-                    <div className="text">Wholesale</div>
-                    <div className="number">45</div>
-                  </div>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-xl-12">
-
-                </div>
-              </div>
-            </div>
-            <div className="page-container">
-              <div className="test">{ this.props.helloWorld }</div>
-              <div className="row">
-                <div className="col-xl-12">
-                  <div className="block-table block-clients">
-                    <div className="block-header">
-                      <a>Name</a>
-                      <a>Email</a>
-                      <a>Type</a>
-                      <a>Address</a>
-                      <a></a>
-                    </div>
-                    <div className="block-content">
-
-                    </div>
-                    <div className="block-footer">
-                    </div>
+                  <div className="block-content">
+                  {
+                    self.props.users.map((user) => {
+                      return (
+                        <div className="block-table-row block-table-row-user" key={ user.id }>
+                          <span>{ user.name }</span>
+                          <span>{ user.email }</span>
+                          <span>{ user.phone }</span>
+                          <span>
+                            <Link className="icon" to={`/user/${user.id}`}>
+                              <img className="" src={ require('assets/images/block-table/icon-view.png') } alt=""/>
+                            </Link>
+                            <Link className="icon" to={`/user/${user.id}`}>
+                              <img className="" src={ require('assets/images/block-table/icon-edit.png') } alt=""/>
+                            </Link>
+                            <a className="icon" href="#">
+                              <img className="" src={ require('assets/images/block-table/icon-delete.png') } alt=""/>
+                            </a>
+                          </span>
+                        </div>
+                      )
+                    })
+                  }
                   </div>
                 </div>
               </div>
@@ -76,8 +68,8 @@ class Page extends Component {
   }
 }
 
-const mapStateToProps = state => ({ helloWorld: state.ClientReducer })
+const mapStateToProps = state => ({ users: state.UsersReducer })
 
-const mapDispatchToProps = dispatch => bindActionCreators({ requestHelloWorld }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ requestUsers }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Page)

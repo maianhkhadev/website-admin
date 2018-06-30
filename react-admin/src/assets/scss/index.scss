@@ -3,4 +3,12 @@
 @import "./layouts/default/index";
 // PAGES
 @import "./pages/home/index";
+@import "./pages/users/index";
+@import "./pages/user-edit/index";
+@import "./pages/user-view/index";
+@import "./pages/tasks/index";
 @import "./pages/clients/index";
+// COMMON
+@import "./common/block-search";
+@import "./common/block-table";
+@import "./common/form";

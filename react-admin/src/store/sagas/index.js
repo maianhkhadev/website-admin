@@ -1,36 +1,61 @@
 import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
 import axios from 'axios'
 // ACTIONS
-import { REQUEST_HELLO_WORLD, receiveHelloWorld } from '../actions'
+import {
+  REQUEST_USER,
+  receiveUser,
+  REQUEST_USERS,
+  receiveUsers,
+  REQUEST_TASKS,
+  receiveTasks
+} from '../actions'
 
-// worker Saga: will be fired on USER_FETCH_REQUESTED actions
-function* helloWorld(action) {
-
+function* fetchUser(action) {
   try {
-    let res = yield axios.get('https://jsonplaceholder.typicode.com/users')
-    console.log(res.data)
-    yield put(receiveHelloWorld('Hello world from redux saga'))
+    let res = yield axios.get(`https://jsonplaceholder.typicode.com/users/${action.id}`)
+    yield put(receiveUser(res.data))
   }
   catch (e) {
 
   }
 }
 
-/*
-  Starts fetchUser on each dispatched `USER_FETCH_REQUESTED` action.
-  Allows concurrent fetches of user.
-*/
-// function* mySaga() {
-//   yield takeEvery("USER_FETCH_REQUESTED", fetchUser);
-// }
+function* fetchUser(action) {
+  try {
+    let res = yield axios.get(`https://jsonplaceholder.typicode.com/users/${action.id}`)
+    yield put(receiveUser(res.data))
+  }
+  catch (e) {
 
-/*
-  Alternatively you may use takeLatest.
+  }
+}
 
-  Does not allow concurrent fetches of user. If "USER_FETCH_REQUESTED" gets
-  dispatched while a fetch is already pending, that pending fetch is cancelled
-  and only the latest one will be run.
-*/
+function* users(action) {
+  try {
+    let res = yield axios.get('https://jsonplaceholder.typicode.com/users')
+    yield put(receiveUsers(res.data))
+  }
+  catch (e) {
+
+  }
+}
+
+function* fetchTasks(action) {
+  try {
+    let res = yield axios.get(`https://jsonplaceholder.typicode.com/todos?_start=${ action.page * 10 }&_limit=10`)
+    yield put(receiveTasks(res.data))
+  }
+  catch (e) {
+
+  }
+}
+
 export default function* mySaga() {
-  yield takeLatest(REQUEST_HELLO_WORLD, helloWorld)
+  yield takeLatest(REQUEST_USER, fetchUser)
+
+  yield takeLatest(CREATE_USER, createUser)
+
+  yield takeLatest(REQUEST_USERS, users)
+
+  yield takeLatest(REQUEST_TASKS, fetchTasks)
 }

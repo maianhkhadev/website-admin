@@ -7,8 +7,10 @@ import store from './store'
 import Signin from '@/pages/signin/index'
 import Signup from '@/pages/signup/index'
 import Home from '@/pages/home/index'
-import Invoices from '@/pages/invoices/index'
 import Users from '@/pages/users/index'
+import UserEdit from '@/pages/user-edit/index'
+import UserView from '@/pages/user-view/index'
+import Tasks from '@/pages/tasks/index'
 import Clients from '@/pages/clients/index'
 import ErrorNotFound from '@/pages/error-not-found/index'
 
@@ -20,8 +22,10 @@ class Root extends Component {
           <Route path='/signin' component={ Signin }/>
           <Route path='/signup' component={ Signup }/>
           <Route exact path='/' component={ Home }/>
-          <Route path='/invoices' component={ Invoices }/>
           <Route path='/users' component={ Users }/>
+          <Route path='/user/:id/edit' component={ UserEdit }/>
+          <Route path='/user/:id/view' component={ UserView }/>
+          <Route path='/tasks' component={ Tasks }/>
           <Route path='/clients' component={ Clients }/>
           <Route component={ ErrorNotFound }/>
         </Switch>

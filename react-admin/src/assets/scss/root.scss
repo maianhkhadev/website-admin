@@ -129,3 +129,18 @@ button {
     box-shadow: darken(#ffffff, 15%);
   }
 }
+.btn-blue {
+  color: #ffffff;
+  background-color: #00ABF8;
+  border-color: #00ABF8;
+
+  &:hover {
+    color: #ffffff;
+    background-color: darken(#00ABF8, 15%);
+    border-color: #00ABF8;
+  }
+
+  &.focus, &:focus {
+    box-shadow: darken(#00ABF8, 15%);
+  }
+}

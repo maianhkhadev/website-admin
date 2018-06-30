@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux'
 // REDUCERS
-import UserReducer from './users-reducer'
-import ClientReducer from './client-reducer'
+import UserReducer from './user-reducer'
+import UsersReducer from './users-reducer'
+import TasksReducer from './tasks-reducer'
 
 export default combineReducers({
   UserReducer,
-  ClientReducer
+  UsersReducer,
+  TasksReducer
 })

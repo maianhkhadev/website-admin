@@ -1,13 +1,9 @@
 import { RECEIVE_USERS } from '../actions'
 
-const initialState = {
-  users: []
-}
-
-export default (state = initialState, { type, text = '' }) => {
+export default (state = [], { type, users = [] }) => {
   switch (type) {
     case RECEIVE_USERS:
-      return text
+      return users
     default:
       return state
   }
