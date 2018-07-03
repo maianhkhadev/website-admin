@@ -1,64 +1,83 @@
 .form {
 
-  .form-group {
-    background-color: rgba(#696969, 0.12);
-    border: 0.0625rem solid transparent;
-    border-radius: 0.25rem;
-    padding: 0.75rem 0.875rem;
+  fieldset {
 
-    &:focus-within {
-      background-color: #ffffff;
-      border-color: #00ABF8;
-
-      .form-label {
-        color: #00ABF8;
-      }
-    }
-
-    .form-label {
-      color: #929292;
+    legend {
+      color: #353535;
       font-size: 0.75rem;
       font-weight: 700;
-      text-transform: uppercase;
-    }
-    .form-control {
-      color: #000000;
-      background-color: transparent;
-      font-size: 1rem;
-      border: unset;
-      border-radius: unset;
-      padding-left: unset;
-      padding-right: unset;
-
-      &::placeholder {
-        color: rgba(#000000, 0.5);
-      }
-      &:focus {
-        box-shadow: unset;
-      }
+      margin-bottom: 1.25rem;
     }
   }
 
-  .form-check {
-    background-color: unset;
-    padding-left: 1rem;
-
-    &:focus-within {
-      background-color: unset;
-      border-color: transparent;
-    }
-    &.has-error {
-      border-bottom: unset;
-    }
-
-    .form-check-input {
-      margin-top: 0.125rem;
-      margin-left: -0.875rem;
-    }
-    .form-check-label {
-      color: rgba(#000000, 0.5);
-      font-size: 0.75rem;
-      margin-left: 0.75rem;
-    }
+  button {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.125rem;
+    border-radius: 0.125rem;
+    padding: 0.75rem 1.5rem;
   }
+
+  // .form-group {
+  //   background-color: rgba(#696969, 0.12);
+  //   border: 0.0625rem solid transparent;
+  //   border-radius: 0.25rem;
+  //   padding: 0.75rem 0.875rem;
+  //
+  //   &:focus-within {
+  //     background-color: #ffffff;
+  //     border-color: #00ABF8;
+  //
+  //     .form-label {
+  //       color: #00ABF8;
+  //     }
+  //   }
+  //
+  //   .form-label {
+  //     color: #929292;
+  //     font-size: 0.75rem;
+  //     font-weight: 700;
+  //     text-transform: uppercase;
+  //   }
+  //   .form-control {
+  //     color: #000000;
+  //     background-color: transparent;
+  //     font-size: 1rem;
+  //     border: unset;
+  //     border-radius: unset;
+  //     padding-left: unset;
+  //     padding-right: unset;
+  //
+  //     &::placeholder {
+  //       color: rgba(#000000, 0.5);
+  //     }
+  //     &:focus {
+  //       box-shadow: unset;
+  //     }
+  //   }
+  // }
+  //
+  // .form-check {
+  //   background-color: unset;
+  //   padding-left: 1rem;
+  //
+  //   &:focus-within {
+  //     background-color: unset;
+  //     border-color: transparent;
+  //   }
+  //   &.has-error {
+  //     border-bottom: unset;
+  //   }
+  //
+  //   .form-check-input {
+  //     margin-top: 0.125rem;
+  //     margin-left: -0.875rem;
+  //   }
+  //   .form-check-label {
+  //     color: rgba(#000000, 0.5);
+  //     font-size: 0.75rem;
+  //     margin-left: 0.75rem;
+  //   }
+  // }
 }

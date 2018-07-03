@@ -8,6 +8,7 @@ import Signin from '@/pages/signin/index'
 import Signup from '@/pages/signup/index'
 import Home from '@/pages/home/index'
 import Users from '@/pages/users/index'
+import UserCreate from '@/pages/user-create/index'
 import UserEdit from '@/pages/user-edit/index'
 import UserView from '@/pages/user-view/index'
 import Tasks from '@/pages/tasks/index'
@@ -23,6 +24,7 @@ class Root extends Component {
           <Route path='/signup' component={ Signup }/>
           <Route exact path='/' component={ Home }/>
           <Route path='/users' component={ Users }/>
+          <Route path='/user/create' component={ UserCreate }/>
           <Route path='/user/:id/edit' component={ UserEdit }/>
           <Route path='/user/:id/view' component={ UserView }/>
           <Route path='/tasks' component={ Tasks }/>

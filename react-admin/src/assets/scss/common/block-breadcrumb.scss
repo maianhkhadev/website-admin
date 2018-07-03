@@ -1,0 +1,23 @@
+.block-breadcrumb {
+
+  .breadcrumb {
+    background-color: unset;
+    border-radius: unset;
+    padding: 0.5rem 0;
+    margin-bottom: unset;
+  }
+  .breadcrumb-item {
+
+    &::before {
+      color: #6f6f6f;
+    }
+
+    a {
+      color: #6f6f6f;
+    }
+
+    &.active {
+      color: #000000;
+    }
+  }
+}

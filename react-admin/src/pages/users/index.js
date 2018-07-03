@@ -25,6 +25,21 @@ class Page extends Component {
       <Layout>
         <div className="page page-users">
           <div className="container">
+            <div className="page-header">
+              <div className="row">
+                <div className="col-xl-5 col-9">
+                  <div className="block-search">
+                    <img className="icon" src={ require('assets/images/icon-search.png') } alt="" />
+                    <input type="text" className="form-control" placeholder="Type to search..." />
+                  </div>
+                </div>
+                <div className="col-xl-7 col-3 text-right">
+                  <Link className="btn btn-blue" to="/user/create">
+                    Add Client
+                  </Link>
+                </div>
+              </div>
+            </div>
             <div className="row">
               <div className="col-xl-12">
                 <div className="block-table block-table-users">
