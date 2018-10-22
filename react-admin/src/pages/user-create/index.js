@@ -5,23 +5,67 @@ import { connect } from 'react-redux'
 import { storeUser } from '@/store/actions'
 // LAYOUT
 import Layout from '@/layouts/default/index'
+// PLUGINS
+import Validation from '@/plugins/validation'
 
 class Page extends Component {
 
   constructor(props) {
     super(props)
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+
+    this.state = {
+      user: {
+        email: '',
+        password: ''
+      },
+      fields: [
+        {
+          name: 'email',
+          rules: {
+            required: true,
+            email: true
+          }
+        }, {
+          name: 'password',
+          rules: {
+            required: true,
+          }
+        }, {
+          name: 'confirmPassword',
+          rules: {
+            equalTo: 'password'
+          }
+        }
+      ]
+    }
   }
 
   componentDidMount() {
     let self = this
+
+    let form = self.refs.form
+    form.validation = new Validation(form, self.state.fields)
+  }
+
+  handleChange({ target }) {
+    let self = this
+
+    let user = { ...self.state.user, [target.name]: target.value }
+
+    self.setState({ user })
   }
 
   handleSubmit(e) {
     let self = this
-    e.preventDefault();
+    e.preventDefault()
 
-    self.props.storeUser(self.state.user)
+    let form = self.refs.form
+    let hasError = form.validation.checkValid()
+
+    if(hasError === false)
+      self.props.storeUser(self.state.user)
   }
 
   render() {
@@ -32,47 +76,50 @@ class Page extends Component {
         <div className="page page-user-create">
           <div className="container">
             <div className="page-header">
-              <div className="title">Edit User</div>
+              <div className="title">Create User</div>
 
               <nav className="block-breadcrumb">
-                <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item"><a href="#">Library</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Data</li>
+                <ol className="breadcrumb">
+                  <li className="breadcrumb-item"><a href="#">Home</a></li>
+                  <li className="breadcrumb-item"><a href="#">Users</a></li>
+                  <li className="breadcrumb-item active" aria-current="page">Create</li>
                 </ol>
               </nav>
             </div>
-            <form className="form" onSubmit={ self.handleSubmit }>
+            <form ref="form" className="form" onSubmit={ self.handleSubmit }>
               <div className="row">
                 <div className="col-xl-6">
                   <fieldset>
                     <legend>System:</legend>
                     <div className="form-group">
-                      <label className="form-label">Username</label>
-                      <input type="text" className="form-control" value={ self.props.user.name } placeholder="Ex: Mai Anh Kha"/>
+                      <label className="form-label">Email</label>
+                      <input name="email" type="email" className="form-control" onChange={ self.handleChange } placeholder="Ex: Mai Anh Kha"/>
+                      <span className="error"></span>
                     </div>
-                    <div class="form-group">
+                    <div className="form-group">
                       <label>Password</label>
-                      <input type="password" class="form-control" placeholder="Password"/>
+                      <input name="password" type="password" className="form-control" onChange={ self.handleChange } placeholder="Password"/>
+                      <span className="error"></span>
                     </div>
-                    <div class="form-group">
+                    <div className="form-group">
                       <label>Confirm Password</label>
-                      <input type="password" class="form-control" placeholder="Password"/>
+                      <input name="confirmPassword" type="password" className="form-control" onChange={ self.handleChange } placeholder="Confirm Password"/>
+                      <span className="error"></span>
                     </div>
                     <div className="form-group">
                       <label className="form-label">Role</label>
-                      <select class="form-control">
-                        <option>Member</option>
-                        <option>Leader</option>
-                        <option>Director</option>
+                      <select name="roleId" className="form-control" onChange={ self.handleChange }>
+                        <option value="1">Member</option>
+                        <option value="2">Leader</option>
+                        <option value="3">Director</option>
                       </select>
                     </div>
                   </fieldset>
                 </div>
                 <div className="col-xl-12">
                   <div className="mt-5">
-                    <button className="btn btn-blue">Update</button>
-                    <button className="btn btn-silver">Cancel</button>
+                    <button className="btn btn-blue" formNoValidate>Update</button>
+                    <button className="btn btn-silver" formNoValidate>Cancel</button>
                   </div>
                 </div>
               </div>

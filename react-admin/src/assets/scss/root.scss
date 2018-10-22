@@ -25,10 +25,10 @@
 @import 'node_modules/bootstrap/scss/pagination';
 // @import 'node_modules/bootstrap/scss/badge';
 // @import 'node_modules/bootstrap/scss/jumbotron';
-@import 'node_modules/bootstrap/scss/alert';
-@import 'node_modules/bootstrap/scss/progress';
+// @import 'node_modules/bootstrap/scss/alert';
+// @import 'node_modules/bootstrap/scss/progress';
 @import 'node_modules/bootstrap/scss/media';
-@import 'node_modules/bootstrap/scss/list-group';
+// @import 'node_modules/bootstrap/scss/list-group';
 // @import 'node_modules/bootstrap/scss/close';
 // @import 'node_modules/bootstrap/scss/modal';
 // @import 'node_modules/bootstrap/scss/tooltip';
@@ -55,11 +55,20 @@ html {
 }
 
 body {
+  position: relative;
   font-family: 'Source Sans Pro', sans-serif;
+
+  &.no-scroll {
+    overflow: hidden;
+  }
 }
 
 button {
   cursor: pointer;
+
+  &:focus {
+    box-shadow: unset;
+  }
 }
 
 .container {
@@ -142,5 +151,20 @@ button {
 
   &.focus, &:focus {
     box-shadow: darken(#00ABF8, 15%);
+  }
+}
+.btn-red {
+  color: #ffffff;
+  background-color: #dc3545;
+  border-color: #dc3545;
+
+  &:hover {
+    color: #ffffff;
+    background-color: darken(#dc3545, 15%);
+    border-color: #dc3545;
+  }
+
+  &.focus, &:focus {
+    box-shadow: darken(#dc3545, 15%);
   }
 }

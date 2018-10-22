@@ -1,9 +1,9 @@
 import { RECEIVE_USERS } from '../actions'
 
-export default (state = [], { type, users = [] }) => {
+export default (state = { data: [] }, { type, pagination = { data: [] } }) => {
   switch (type) {
     case RECEIVE_USERS:
-      return users
+      return pagination
     default:
       return state
   }

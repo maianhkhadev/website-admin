@@ -5,27 +5,41 @@
     .block-header {
 
       a:nth-child(1) {
-        width: 30%;
+        width: 5%;
+
+        @media screen and (max-width: 600px) {
+          width: 10%;
+        }
+      }
+      a:nth-child(2) {
+        width: 22.5%;
 
         @media screen and (max-width: 600px) {
           width: 80%;
         }
       }
-      a:nth-child(2) {
-        width: 30%;
-
-        @media screen and (max-width: 600px) {
-          display: none;
-        }
-      }
       a:nth-child(3) {
-        width: 30%;
+        width: 25%;
 
         @media screen and (max-width: 600px) {
           display: none;
         }
       }
       a:nth-child(4) {
+        width: 22.5%;
+
+        @media screen and (max-width: 600px) {
+          display: none;
+        }
+      }
+      a:nth-child(5) {
+        width: 15%;
+
+        @media screen and (max-width: 600px) {
+          display: none;
+        }
+      }
+      a:nth-child(6) {
         width: 10%;
 
         @media screen and (max-width: 600px) {
@@ -39,7 +53,14 @@
       .block-table-row-user {
 
         span:nth-child(1) {
-          width: 30%;
+          width: 5%;
+
+          @media screen and (max-width: 600px) {
+            width: 10%;
+          }
+        }
+        span:nth-child(2) {
+          width: 22.5%;
 
           .avatar {
             margin-right: 1rem;
@@ -49,39 +70,33 @@
             width: 80%;
           }
         }
-        span:nth-child(2) {
-          width: 30%;
-
-          @media screen and (max-width: 600px) {
-            display: none;
-          }
-        }
         span:nth-child(3) {
-          width: 30%;
+          width: 25%;
 
           @media screen and (max-width: 600px) {
             display: none;
           }
         }
         span:nth-child(4) {
-          width: 10%;
-          text-align: right;
+          width: 22.5%;
 
           @media screen and (max-width: 600px) {
             display: none;
           }
         }
+        span:nth-child(5) {
+          width: 15%;
 
-        .icon {
-          margin-left: 1rem;
-          opacity: 0.5;
-
-          &:hover {
-            opacity: 1;
+          @media screen and (max-width: 600px) {
+            display: none;
           }
+        }
+        span:nth-child(6) {
+          width: 10%;
+          text-align: right;
 
-          img {
-            width: 1rem;
+          @media screen and (max-width: 600px) {
+            display: none;
           }
         }
       }

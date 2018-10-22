@@ -4,18 +4,36 @@ import { Link } from 'react-router-dom'
 // STORE
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { requestUsers } from '@/store/actions'
+import { requestUsers, deleteUser } from '@/store/actions'
 // LAYOUT
-import Layout from '@/layouts/default/index'
+import Layout from '@/layouts/table/index'
+import Functions from '@/layouts/table/functions'
+// BLOCKS
+import BlockTableUser from '@/components/blocks/block-table-user'
+import BlockSearch from '@/components/blocks/block-search'
+// MODALS
+import ModalDeleteUser from '@/components/modals/modal-delete-user'
 
 class Page extends Component {
 
   constructor(props) {
     super(props)
+
+    // LAYOUT FUNCTIONS
+    let functions = new Functions(this)
+    functions.bind()
+
+    this.state = {
+      deleteItem: {
+        id: null, name: '', email: ''
+      }
+    }
   }
 
   componentDidMount() {
-    this.props.requestUsers()
+    let self = this
+
+    self.props.requestItems({ page: 1 })
   }
 
   render() {
@@ -28,10 +46,7 @@ class Page extends Component {
             <div className="page-header">
               <div className="row">
                 <div className="col-xl-5 col-9">
-                  <div className="block-search">
-                    <img className="icon" src={ require('assets/images/icon-search.png') } alt="" />
-                    <input type="text" className="form-control" placeholder="Type to search..." />
-                  </div>
+                  <BlockSearch onEnter={ self.onSearchText }/>
                 </div>
                 <div className="col-xl-7 col-3 text-right">
                   <Link className="btn btn-blue" to="/user/create">
@@ -42,49 +57,29 @@ class Page extends Component {
             </div>
             <div className="row">
               <div className="col-xl-12">
-                <div className="block-table block-table-users">
-                  <div className="block-header">
-                    <a>Name</a>
-                    <a>Email</a>
-                    <a>Phone</a>
-                    <a></a>
-                  </div>
-                  <div className="block-content">
-                  {
-                    self.props.users.map((user) => {
-                      return (
-                        <div className="block-table-row block-table-row-user" key={ user.id }>
-                          <span>{ user.name }</span>
-                          <span>{ user.email }</span>
-                          <span>{ user.phone }</span>
-                          <span>
-                            <Link className="icon" to={`/user/${user.id}/view`}>
-                              <img className="" src={ require('assets/images/block-table/icon-view.png') } alt=""/>
-                            </Link>
-                            <Link className="icon" to={`/user/${user.id}/edit`}>
-                              <img className="" src={ require('assets/images/block-table/icon-edit.png') } alt=""/>
-                            </Link>
-                            <a className="icon" href="#">
-                              <img className="" src={ require('assets/images/block-table/icon-delete.png') } alt=""/>
-                            </a>
-                          </span>
-                        </div>
-                      )
-                    })
-                  }
-                  </div>
-                </div>
+                <BlockTableUser
+                  pagination={ self.props.pagination }
+                  onCheckItems={ self.onCheckItems }
+                  showModalDelete={ self.showModalDelete }
+                  onClickPageLink={ self.onClickPageLink }
+                />
               </div>
             </div>
           </div>
+
+          <ModalDeleteUser
+            deleteItem={ self.state.deleteItem }
+            hideModalDelete={ self.hideModalDelete }
+            confirmDelete={ self.confirmDelete }
+          />
         </div>
       </Layout>
     )
   }
 }
 
-const mapStateToProps = state => ({ users: state.UsersReducer })
+const mapStateToProps = state => ({ pagination: state.UsersReducer })
 
-const mapDispatchToProps = dispatch => bindActionCreators({ requestUsers }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ requestItems: requestUsers, deleteItem: deleteUser }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Page)

@@ -5,15 +5,39 @@ import { connect } from 'react-redux'
 import { requestUser, updateUser } from '@/store/actions'
 // LAYOUT
 import Layout from '@/layouts/default/index'
+// PLUGINS
+import Validation from '@/plugins/validation'
 
 class Page extends Component {
 
   constructor(props) {
     super(props)
+    this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this);
 
     this.state = {
-      user: {}
+      user: {
+
+      },
+      fields: [
+        {
+          name: 'email',
+          rules: {
+            required: true,
+            email: true
+          }
+        }, {
+          name: 'password',
+          rules: {
+            required: true,
+          }
+        }, {
+          name: 'confirmPassword',
+          rules: {
+            equalTo: 'password'
+          }
+        }
+      ]
     }
   }
 
@@ -22,6 +46,14 @@ class Page extends Component {
 
     let id = self.props.match.params.id
     self.props.requestUser(id)
+  }
+
+  handleChange({ target }) {
+    let self = this
+
+    let user = { ...self.state.user, [target.name]: target.value }
+
+    self.setState({ user })
   }
 
   handleSubmit(e) {

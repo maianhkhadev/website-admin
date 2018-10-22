@@ -1,9 +1,10 @@
 .block-table {
 
   .block-header {
+    position: relative;
     padding: 1.25rem 2.5rem;
 
-    a {
+    .block-table-title {
       position: relative;
       display: inline-block;
       color: rgba(#353535, 0.5);
@@ -14,6 +15,33 @@
 
       @media screen and (max-width: 600px) {
         pointer-events: none;
+      }
+    }
+
+    .actions-for-all {
+      position: absolute;
+      top: 0;
+      left: calc(5% + 2.25rem);
+      padding: 1.25rem 1.5rem;
+      background-color: #ffffff;
+      box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.05);
+
+      .icon {
+        margin-right: 1.5rem;
+        opacity: 0.5;
+        cursor: pointer;
+
+        &:last-child {
+          margin-right: 0;
+        }
+
+        &:hover {
+          opacity: 1;
+        }
+
+        img {
+          width: 1.25rem;
+        }
       }
     }
   }
@@ -38,6 +66,20 @@
         white-space: nowrap;
         padding-right: 0.5rem;
         overflow: hidden;
+
+        .icon {
+          margin-left: 1rem;
+          opacity: 0.5;
+          cursor: pointer;
+
+          &:hover {
+            opacity: 1;
+          }
+
+          img {
+            width: 1rem;
+          }
+        }
       }
     }
   }
@@ -49,35 +91,45 @@
       margin-bottom: unset;
 
       .page-item {
+        margin-left: 0.25rem;
+        margin-right: 0.25rem;
+
+        .page-link {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 3rem;
+          height: 3rem;
+          color: rgba(53, 53, 53, 0.5);
+          font-size: 0.875rem;
+          font-weight: 700;
+          padding: unset;
+
+          &:focus {
+            box-shadow: unset;
+          }
+        }
+
+        &:first-child .page-link {
+          border-top-left-radius: unset;
+          border-bottom-left-radius: unset;
+        }
+
+        &:last-child .page-link {
+          border-top-right-radius: unset;
+          border-bottom-right-radius: unset;
+        }
 
         &.active .page-link {
           color: #ffffff;
           background-color: #00ABF8;
+          border-color: transparent;
         }
 
-        &:first-child .page-link {
-          border-top-left-radius: 0.125rem;
-          border-bottom-left-radius: 0.125rem;
-        }
-
-        &:last-child .page-link {
-          border-top-right-radius: 0.125rem;
-          border-bottom-right-radius: 0.125rem;
+        &.disabled .page-link {
+          color: #d9d9d9;
         }
       }
-
-      .page-link {
-        color: #d9d9d9;
-        font-size: 0.75rem;
-        font-weight: 700;
-        padding: 1rem 1.25rem;
-
-        &:focus {
-          box-shadow: unset;
-        }
-      }
-
-
     }
   }
 }

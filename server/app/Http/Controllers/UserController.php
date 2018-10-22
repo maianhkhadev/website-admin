@@ -13,9 +13,23 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::all();
+        $users = User::paginate(10);
+
+        $name = $request->query('name');
+        if($name !== null) {
+          $users = User::where('name', 'like', '%'.$name.'%')
+                        ->orWhere('email', 'like', '%'.$name.'%')
+                        ->orWhere('phone', 'like', '%'.$name.'%')
+                        ->paginate(10);
+        }
+        else {
+          $users = User::paginate(10);
+        }
+        // foreach ($users as $user) {
+        //   $user->role_name = $user->role->name;
+        // }
 
         return $users;
     }
@@ -29,9 +43,10 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $user = new User();
-        $user->name = $request->name;
+        $user->name = 'New User';
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
+        $user->role_id = $request->roleId;
         // if ($request->hasFile('thumbnail')) {
         //   $thumbnail = $request->file('thumbnail');
         //   $thumbnail_url = asset('/storage\/'.$thumbnail->store('thumbnails', 'public'));
@@ -99,6 +114,6 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return $id;
     }
 }

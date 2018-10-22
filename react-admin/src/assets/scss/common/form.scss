@@ -4,10 +4,39 @@
 
     legend {
       color: #353535;
-      font-size: 0.75rem;
+      font-size: 1.25rem;
       font-weight: 700;
       margin-bottom: 1.25rem;
     }
+  }
+
+  .form-control {
+
+    &:focus {
+      outline: unset;
+    }
+
+    &.error {
+      border-color: #dc3545;
+
+      &:focus {
+        box-shadow: 0 0 0 0.2rem rgba(#dc3545, 0.25);
+      }
+    }
+  }
+
+  .form-control-plaintext {
+    font-weight: 400;
+    padding-top: 0;
+
+    &:focus {
+      outline: unset;
+    }
+  }
+
+  .error {
+    color: #dc3545;
+    font-size: 0.75rem;
   }
 
   button {
