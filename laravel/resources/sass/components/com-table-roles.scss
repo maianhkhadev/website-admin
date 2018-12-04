@@ -1,0 +1,13 @@
+.com-table-roles {
+
+  .com-header {
+    grid-template-columns: 5rem calc(100% - 30rem) 15rem 10rem;
+  }
+
+  .com-content {
+
+    .com-row {
+      grid-template-columns: 5rem calc(100% - 30rem) 15rem 10rem;
+    }
+  }
+}

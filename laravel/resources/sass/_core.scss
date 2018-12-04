@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Oleo+Script:400,700');
+
+html {
+  overflow: hidden;
+}
+
+body {
+  font-family: 'Roboto';
+}
+
+a {
+  color: inherit;
+
+}
+
+.btn-orange {
+  color: #ffffff;
+  background-color: #FB8C00;
+  border-color: #FB8C00;
+
+  &:hover {
+    background-color: #F57C00;
+    border-color: #F57C00;
+  }
+}

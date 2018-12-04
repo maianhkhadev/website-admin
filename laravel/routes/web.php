@@ -37,6 +37,12 @@ Route::resource('posts', 'PostController');
 
 Route::resource('products', 'ProductController');
 
+Route::resource('purchases', 'PurchaseController');
+
 Route::resource('roles', 'RoleController');
 
 Route::resource('users', 'UserController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
