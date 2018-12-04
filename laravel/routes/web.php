@@ -27,6 +27,8 @@ Route::resource('customers', 'CustomerController');
 
 Route::resource('groups', 'GroupController');
 
+Route::resource('orders', 'OrderController');
+
 Route::resource('permissions', 'PermissionController');
 
 Route::resource('photos', 'PhotoController');
