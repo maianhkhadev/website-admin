@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Album;
 use Illuminate\Http\Request;
 
 class AlbumController extends Controller
@@ -13,7 +14,8 @@ class AlbumController extends Controller
      */
     public function index()
     {
-        //
+      $albums = Album::orderBy('updated_at', 'DESC')->paginate(8);
+      return view('albums.index', ['albums' => $albums]);
     }
 
     /**

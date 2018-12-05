@@ -1,0 +1,33 @@
+.com-photo {
+  position: relative;
+  background-color: #e5e5e5;
+  padding-top: 100%;
+  overflow: hidden;
+
+  &:hover {
+    
+  }
+
+  img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+  }
+
+  .actions {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    background-color: rgba(#000000, 0.5);
+    padding: 0.5rem 1rem;
+
+    a {
+
+    }
+  }
+}

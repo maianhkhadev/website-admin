@@ -12,14 +12,14 @@
             <li class="breadcrumb-item active" aria-current="page">List of Roles</li>
           </ol>
         </div>
-        <div class="col-xl-4">
-          <div class="field-search">
-            <img class="icon" src="/images/icon-search.png" alt="" />
-            <input type="text" class="form-control" placeholder="Type to search..."/>
+        <div class="col-xl-6">
+          <div class="tool-box">
+            <div class="field-search">
+              <img class="icon" src="/images/icon-search.png" alt="" />
+              <input type="text" class="form-control" placeholder="Type to search..."/>
+            </div>
+            <a class="btn btn-orange btn-create" href="{{ route('roles.create') }}">Create</a>
           </div>
-        </div>
-        <div class="col-xl-2 text-right">
-          <a class="btn btn-orange" href="{{ route('roles.create') }}">Create New Role</a>
         </div>
       </div>
     </div>

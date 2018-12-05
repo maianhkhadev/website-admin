@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Photo;
 use Illuminate\Http\Request;
 
 class PhotoController extends Controller
@@ -13,7 +14,8 @@ class PhotoController extends Controller
      */
     public function index()
     {
-        //
+      $photos = Photo::orderBy('updated_at', 'DESC')->paginate(30);
+      return view('photos.index', ['photos' => $photos]);
     }
 
     /**

@@ -3,7 +3,25 @@
 @section('content')
   <div class="page">
     <div class="page-header">
-      <a class="btn btn-orange" href="{{ route('users.create') }}">Create New User</a>
+      <div class="row">
+        <div class="col-xl-6">
+          <h3 class="page-title">List of Users</h3>
+
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">List of Users</li>
+          </ol>
+        </div>
+        <div class="col-xl-6">
+          <div class="tool-box">
+            <div class="field-search">
+              <img class="icon" src="/images/icon-search.png" alt="" />
+              <input type="text" class="form-control" placeholder="Type to search..."/>
+            </div>
+            <a class="btn btn-orange btn-create" href="{{ route('users.create') }}">Create</a>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="page-content">

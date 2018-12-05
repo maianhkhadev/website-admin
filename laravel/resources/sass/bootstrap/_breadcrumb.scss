@@ -1,40 +1,21 @@
-.block-breadcrumb {
+.breadcrumb {
+  background-color: unset;
+  padding: 0;
+  margin-bottom: unset;
 
-  ul {
-    list-style-type: none;
-    -webkit-padding-start: unset;
-    margin-bottom: unset;
+  .breadcrumb-item {
+    font-size: 0.75rem;
 
-    li {
-      display: inline-block;
+    a {
+      color: #555555;
 
-      a {
-        color: #787868;
-        font-size: 1rem;
-
-        &:hover {
-          color: #000000;
-          text-decoration: unset;
-        }
-      }
-
-      &::after {
-        content: "-";
-        color: #787868;
-        padding-left: 0.75rem;
-        padding-right: 0.5rem;
-      }
-
-      &:last-child {
-
-        &::after {
-          content: unset;
-        }
-
-        a {
-          pointer-events: none;
-        }
+      &:hover {
+        color: #000000;
       }
     }
+  }
+
+  .breadcrumb-item + .breadcrumb-item::before {
+    content: '-';
   }
 }

@@ -12,6 +12,7 @@
     .sidebar {
       height: calc(100vh - 4.5rem);
       background-color: #2a3140;
+      overflow: auto;
 
       .nav {
         display: flex;

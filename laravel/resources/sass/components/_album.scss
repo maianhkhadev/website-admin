@@ -1,0 +1,30 @@
+.com-album {
+  background-color: #ffffff;
+  border: 1px solid #e8eaed;
+  border-radius: 0.5rem;
+  margin-bottom: 1.875rem;
+  overflow: hidden;
+  cursor: pointer;
+
+  .com-title {
+    font-size: 1rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 1rem 1rem;
+    margin-bottom: unset;
+    overflow: hidden;
+  }
+
+  .wrapper {
+    display: grid;
+    grid-template-columns: 50% 50%;
+
+    div {
+      width: 100%;
+      padding-top: 75%;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+  }
+}
