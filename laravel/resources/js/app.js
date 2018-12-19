@@ -1,3 +1,4 @@
+import PagePostCreate from './pages/posts.create'
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -17,8 +18,11 @@ window.Vue = require('vue');
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 
+Vue.component('quill', require('./components/quill.vue'));
+
 Vue.component('com-album', require('./components/album.vue'));
 Vue.component('com-photo', require('./components/photo.vue'));
+Vue.component('com-table-row-post', require('./components/table-row-post.vue'));
 Vue.component('com-table-row-role', require('./components/table-row-role.vue'));
 Vue.component('com-table-row-user', require('./components/table-row-user.vue'));
 
@@ -32,5 +36,12 @@ Vue.component('com-table-row-user', require('./components/table-row-user.vue'));
  */
 
 const app = new Vue({
-    el: '#app'
+  el: '#app'
 });
+
+window.vm = app
+
+document.addEventListener('DOMContentLoaded', function() {
+
+  PagePostCreate.loaded()
+})

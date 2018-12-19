@@ -31,8 +31,6 @@ Route::resource('orders', 'OrderController');
 
 Route::resource('permissions', 'PermissionController');
 
-Route::resource('photos', 'PhotoController');
-
 Route::resource('posts', 'PostController');
 
 Route::resource('products', 'ProductController');

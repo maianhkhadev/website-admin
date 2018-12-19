@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Post;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -13,7 +14,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Post::orderBy('updated_at', 'DESC')->paginate(8);
+        return view('posts.index', ['posts' => $posts]);
     }
 
     /**
@@ -23,7 +25,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
     /**
@@ -34,7 +36,47 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        if ($request->hasFile('blods')) {
+          $blods = $request->file('blods');
+          var_dump('1'); die;
+          // foreach($blods as $index=>$blod) {
+          //   $image_url = asset('/storage\/'.$blod->store('contents', 'public'));
+          //   $article->content = str_replace('{im-'.$index.'}', $image_url, $article->content);
+          // }
+        }
+
+        var_dump($request->input()); die;
+
+        $post = new Post();
+
+        // $post->name = $request->input('name');
+        // $post->color = $request->input('color');
+        // $post->closed = false;
         //
+        // $post->save();
+
+        // $article = new Article();
+        // $article->title = $request->title;
+        // $article->description = $request->description;
+        // $article->content = $request->content;
+        // $article->collection_id = $request->collection_id;
+        // $article->status = $request->status;
+        // if ($request->hasFile('thumbnail')) {
+        //   $thumbnail = $request->file('thumbnail');
+        //   $thumbnail_url = asset('/storage\/'.$thumbnail->store('thumbnails', 'public'));
+        //   $article->thumbnail_url = $thumbnail_url;
+        // }
+        // if ($request->hasFile('blods')) {
+        //   $blods = $request->file('blods');
+        //   foreach($blods as $index=>$blod) {
+        //     $image_url = asset('/storage\/'.$blod->store('contents', 'public'));
+        //     $article->content = str_replace('{im-'.$index.'}', $image_url, $article->content);
+        //   }
+        // }
+        // $article->save();
+        // return $article;
+
+        return redirect()->route('posts.index');
     }
 
     /**

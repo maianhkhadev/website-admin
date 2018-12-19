@@ -54,3 +54,19 @@ if (token) {
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+
+// TOOLS
+window.tools = {}
+
+window.tools.storeToServer = function(file, callback) {
+  let formData = new FormData()
+  formData.append('image', file)
+
+  axios.post('/api/photos', formData).then(res => {
+    if (res.status === 200) {
+      callback(res.data)
+    }
+  }).catch(error => {
+
+  })
+}

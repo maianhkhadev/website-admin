@@ -7,6 +7,6 @@ $factory->define(App\Photo::class, function (Faker $faker) {
 
   return [
     'album_id' => $faker->randomElement($albums),
-    'url' => $faker->imageUrl
+    'url' => $faker->unique()->imageUrl
   ];
 });

@@ -86,12 +86,15 @@
               <a class="nav-link" href="{{ route('permissions.index') }}">Permission</a>
             </li>
 
-            <li class="nav-item-header">Product</li>
+            <li class="nav-item-header">Product - Post</li>
             <li class="nav-item">
               <a class="nav-link" href="{{ route('categories.index') }}">Category</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{{ route('products.index') }}">Product</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('posts.index') }}">Post</a>
             </li>
 
             <li class="nav-item-header">Order</li>

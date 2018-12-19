@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Photo;
 use Illuminate\Http\Request;
 
-class PhotoController extends Controller
+class TaskController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +13,7 @@ class PhotoController extends Controller
      */
     public function index()
     {
-      $photos = Photo::orderBy('updated_at', 'DESC')->paginate(30);
-      return view('photos.index', ['photos' => $photos]);
+        //
     }
 
     /**
@@ -36,9 +34,7 @@ class PhotoController extends Controller
      */
     public function store(Request $request)
     {
-        $image = $request->file('image');
-        $image_url = asset('/storage\/'.$image->store('contents', 'public'));
-        return $image_url;
+        //
     }
 
     /**
