@@ -1,0 +1,26 @@
+.page-posts-create {
+
+  .page-content {
+
+    .thumbnail {
+      position: relative;
+      height: 10rem;
+      background-color: #ffffff;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      border: 0.125rem dashed #ced4da;
+      border-radius: 0.5rem;
+
+      .icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 5rem;
+        height: 5rem;
+        transform: translate(-50%, -50%);
+        cursor: pointer;
+      }
+    }
+  }
+}

@@ -10102,6 +10102,28 @@ a {
   padding: 0.875rem 1.25rem 0.75rem;
 }
 
+.page-posts-create .page-content .thumbnail {
+  position: relative;
+  height: 10rem;
+  background-color: #ffffff;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 0.125rem dashed #ced4da;
+  border-radius: 0.5rem;
+}
+
+.page-posts-create .page-content .thumbnail .icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5rem;
+  height: 5rem;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+
 .com-album {
   display: block;
   background-color: #ffffff;

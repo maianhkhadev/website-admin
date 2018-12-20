@@ -64,7 +64,9 @@
           <div class="col-xl-6">
             <div class="form-group">
               <label>Thumbnail</label>
-              <duv class="thumbnail"></div>
+              <div class="thumbnail">
+                <img class="icon" src="/images/icon-upload.png" alt="" />
+              </div>
             </div>
           </div>
         </div>
