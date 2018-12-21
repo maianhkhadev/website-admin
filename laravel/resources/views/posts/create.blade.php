@@ -81,7 +81,6 @@
         <button class="btn btn-primary">Preview</button>
         <button class="btn btn-orange">Save & Close</button>
       </form>
-
     </div>
   </div>
 @endsection

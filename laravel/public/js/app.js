@@ -16276,6 +16276,8 @@ module.exports = __webpack_require__(72);
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__pages_posts_create__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pages_users_create__ = __webpack_require__(74);
+
 
 
 /**
@@ -16296,7 +16298,7 @@ window.Vue = __webpack_require__(41);
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 
-Vue.component('quill', __webpack_require__(74));
+Vue.component('quill', __webpack_require__(44));
 
 Vue.component('com-album', __webpack_require__(57));
 Vue.component('com-photo', __webpack_require__(60));
@@ -16322,6 +16324,7 @@ window.vm = app;
 document.addEventListener('DOMContentLoaded', function () {
 
   __WEBPACK_IMPORTED_MODULE_0__pages_posts_create__["a" /* default */].loaded();
+  __WEBPACK_IMPORTED_MODULE_1__pages_users_create__["a" /* default */].loaded();
 });
 
 /***/ }),
@@ -49643,8 +49646,176 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(4)))
 
 /***/ }),
-/* 44 */,
-/* 45 */,
+/* 44 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(45)
+/* template */
+var __vue_template__ = __webpack_require__(56)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/quill.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-9053156c", Component.options)
+  } else {
+    hotAPI.reload("data-v-9053156c", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 45 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* WEBPACK VAR INJECTION */(function(process) {var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+//
+//
+//
+//
+
+if (process.browser) {
+  __webpack_require__(46);
+  __webpack_require__(49);
+  window.Quill = __webpack_require__(51);
+  __webpack_require__(55);
+}
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      editor: null
+    };
+  },
+
+  methods: {
+    html: function html() {
+      var self = this;
+      return self.editor.root.innerHTML;
+    },
+    storeData: function storeData() {
+      var self = this;
+
+      return self.editor.getContents();
+    },
+    setContents: function setContents(delta) {
+      var self = this;
+      self.editor.setContents(delta);
+    }
+  },
+  created: function created() {
+    var self = this;
+
+    self.selectLocalImage = function () {
+      var input = document.createElement('input');
+      input.setAttribute('type', 'file');
+      input.click();
+      // Listen upload local image and save to server
+      input.onchange = function () {
+        var file = input.files[0];
+
+        // file type is only image.
+        if (/^image\//.test(file.type)) {
+          window.tools.storeToServer(file, function (url) {
+            var range = self.editor.getSelection();
+            self.editor.insertEmbed(range.index, 'image', url);
+          });
+        } else {
+          console.warn('You could only upload images.');
+        }
+      };
+    };
+  },
+  mounted: function mounted() {
+    var self = this;
+
+    var BlockEmbed = Quill.import('blots/block/embed');
+
+    var ImageBlot = function (_BlockEmbed) {
+      _inherits(ImageBlot, _BlockEmbed);
+
+      function ImageBlot() {
+        _classCallCheck(this, ImageBlot);
+
+        return _possibleConstructorReturn(this, (ImageBlot.__proto__ || Object.getPrototypeOf(ImageBlot)).apply(this, arguments));
+      }
+
+      _createClass(ImageBlot, null, [{
+        key: 'create',
+        value: function create(value) {
+          var node = _get(ImageBlot.__proto__ || Object.getPrototypeOf(ImageBlot), 'create', this).call(this);
+          node.setAttribute('src', value);
+          node.setAttribute('class', 'w-100 mt-2 mb-3');
+          return node;
+        }
+      }, {
+        key: 'value',
+        value: function value(node) {
+          return node.getAttribute('src');
+        }
+      }]);
+
+      return ImageBlot;
+    }(BlockEmbed);
+
+    ImageBlot.blotName = 'image';
+    ImageBlot.tagName = 'img';
+    Quill.register(ImageBlot, true);
+
+    self.editor = new Quill(self.$refs.quill, {
+      theme: 'snow',
+      modules: {
+        toolbar: [[{ header: [2, 3, false] }], ['bold', 'italic', 'underline'], ['link', 'blockquote', 'code-block', 'image'], [{ 'color': [] }], [{ list: 'ordered' }, { list: 'bullet' }]]
+      }
+    });
+
+    // quill editor add image handler
+    self.editor.getModule('toolbar').addHandler('image', function () {
+      self.selectLocalImage();
+    });
+  }
+});
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(4)))
+
+/***/ }),
 /* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -58631,7 +58802,26 @@ module.exports = __webpack_require__(29);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(14).Buffer))
 
 /***/ }),
-/* 56 */,
+/* 56 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { ref: "quill" })
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-9053156c", module.exports)
+  }
+}
+
+/***/ }),
 /* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -59247,193 +59437,38 @@ if (false) {
 /***/ }),
 /* 73 */,
 /* 74 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(2)
-/* script */
-var __vue_script__ = __webpack_require__(75)
-/* template */
-var __vue_template__ = __webpack_require__(76)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/js/components/quill.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-9053156c", Component.options)
-  } else {
-    hotAPI.reload("data-v-9053156c", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 75 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* WEBPACK VAR INJECTION */(function(process) {var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+/* harmony default export */ __webpack_exports__["a"] = ({
 
-var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+  loaded: function loaded() {
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    var page = document.querySelector('.page-users-create');
 
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-//
-//
-//
-//
-
-if (process.browser) {
-  __webpack_require__(46);
-  __webpack_require__(49);
-  window.Quill = __webpack_require__(51);
-  __webpack_require__(55);
-}
-/* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      editor: null
-    };
-  },
-
-  methods: {
-    html: function html() {
-      var self = this;
-      return self.editor.root.innerHTML;
-    },
-    storeData: function storeData() {
-      var self = this;
-
-      return self.editor.getContents();
-    },
-    setContents: function setContents(delta) {
-      var self = this;
-      self.editor.setContents(delta);
+    if (page === null) {
+      return;
     }
-  },
-  created: function created() {
-    var self = this;
 
-    self.selectLocalImage = function () {
-      var input = document.createElement('input');
-      input.setAttribute('type', 'file');
-      input.click();
-      // Listen upload local image and save to server
-      input.onchange = function () {
-        var file = input.files[0];
-
-        // file type is only image.
-        if (/^image\//.test(file.type)) {
-          window.tools.storeToServer(file, function (url) {
-            var range = self.editor.getSelection();
-            self.editor.insertEmbed(range.index, 'image', url);
-          });
-        } else {
-          console.warn('You could only upload images.');
-        }
-      };
-    };
-  },
-  mounted: function mounted() {
-    var self = this;
-
-    var BlockEmbed = Quill.import('blots/block/embed');
-
-    var ImageBlot = function (_BlockEmbed) {
-      _inherits(ImageBlot, _BlockEmbed);
-
-      function ImageBlot() {
-        _classCallCheck(this, ImageBlot);
-
-        return _possibleConstructorReturn(this, (ImageBlot.__proto__ || Object.getPrototypeOf(ImageBlot)).apply(this, arguments));
-      }
-
-      _createClass(ImageBlot, null, [{
-        key: 'create',
-        value: function create(value) {
-          var node = _get(ImageBlot.__proto__ || Object.getPrototypeOf(ImageBlot), 'create', this).call(this);
-          node.setAttribute('src', value);
-          node.setAttribute('class', 'w-100 mt-2 mb-3');
-          return node;
-        }
-      }, {
-        key: 'value',
-        value: function value(node) {
-          return node.getAttribute('src');
-        }
-      }]);
-
-      return ImageBlot;
-    }(BlockEmbed);
-
-    ImageBlot.blotName = 'image';
-    ImageBlot.tagName = 'img';
-    Quill.register(ImageBlot, true);
-
-    self.editor = new Quill(self.$refs.quill, {
-      theme: 'snow',
-      modules: {
-        toolbar: [[{ header: [2, 3, false] }], ['bold', 'italic', 'underline'], ['link', 'blockquote', 'code-block', 'image'], [{ 'color': [] }], [{ list: 'ordered' }, { list: 'bullet' }]]
+    var input = document.querySelector('input[name="avatar"]');
+    input.addEventListener('change', function () {
+      if (this.files && this.files[0]) {
+        self.file = this.files[0];
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          var avatar = document.querySelector('.avatar');
+          avatar.style['background-image'] = 'url(' + e.target.result + ')';
+        };
+        reader.readAsDataURL(this.files[0]);
       }
     });
 
-    // quill editor add image handler
-    self.editor.getModule('toolbar').addHandler('image', function () {
-      self.selectLocalImage();
+    var avatarIcon = document.querySelector('.avatar .icon');
+    avatarIcon.addEventListener('click', function () {
+      input.click();
     });
   }
 });
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(4)))
-
-/***/ }),
-/* 76 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { ref: "quill" })
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-9053156c", module.exports)
-  }
-}
 
 /***/ })
 /******/ ]);

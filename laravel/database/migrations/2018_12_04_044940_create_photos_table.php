@@ -18,6 +18,7 @@ class CreatePhotosTable extends Migration
             $table->integer('album_id');
             $table->string('url');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

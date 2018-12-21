@@ -22,6 +22,7 @@ class CreatePostsTable extends Migration
             $table->text('content');
             $table->unsignedInteger('status');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

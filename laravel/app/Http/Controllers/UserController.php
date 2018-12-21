@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Role;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -14,8 +16,8 @@ class UserController extends Controller
   */
   public function index()
   {
-    $users = User::orderBy('updated_at', 'DESC')->paginate(8);
-    return view('users.index', ['users' => $users]);
+      $users = User::orderBy('updated_at', 'DESC')->paginate(8);
+      return view('users.index', ['users' => $users]);
   }
 
   /**
@@ -25,7 +27,8 @@ class UserController extends Controller
   */
   public function create()
   {
-    //
+      $roles = Role::all();
+      return view('users.create', ['roles' => $roles]);
   }
 
   /**
@@ -36,7 +39,24 @@ class UserController extends Controller
   */
   public function store(Request $request)
   {
-    //
+      $user = new User();
+
+      $user->role_id = $request->input('role_id');
+      $user->name = $request->input('name');
+      $user->email = $request->input('email');
+
+      if ($request->hasFile('avatar')) {
+        $avatar = $request->file('avatar');
+        $avatar_url = asset('/storage\/'.$avatar->store('user_avatars', 'public'));
+        $user->avatar_url = $avatar_url;
+      }
+
+      $password = $request->input('password');
+      $user->password = Hash::make($password);
+
+      $user->save();
+
+      return redirect()->route('users.index');
   }
 
   /**
@@ -58,7 +78,7 @@ class UserController extends Controller
   */
   public function edit($id)
   {
-    //
+
   }
 
   /**
@@ -70,7 +90,15 @@ class UserController extends Controller
   */
   public function update(Request $request, $id)
   {
-    //
+      $user = User::find($id);
+
+      $user->role_id = $request->input('role_id');
+      $user->name = $request->input('name');
+      $user->email = $request->input('email');
+
+      $user->save();
+
+      return redirect()->route('users.index');
   }
 
   /**

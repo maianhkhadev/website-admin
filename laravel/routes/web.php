@@ -31,6 +31,8 @@ Route::resource('orders', 'OrderController');
 
 Route::resource('permissions', 'PermissionController');
 
+Route::resource('photos', 'PhotoController');
+
 Route::resource('posts', 'PostController');
 
 Route::resource('products', 'ProductController');
@@ -41,6 +43,6 @@ Route::resource('roles', 'RoleController');
 
 Route::resource('users', 'UserController');
 
-Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();

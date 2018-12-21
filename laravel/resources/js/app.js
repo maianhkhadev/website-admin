@@ -1,4 +1,5 @@
 import PagePostCreate from './pages/posts.create'
+import PageUserCreate from './pages/users.create'
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -44,4 +45,5 @@ window.vm = app
 document.addEventListener('DOMContentLoaded', function() {
 
   PagePostCreate.loaded()
+  PageUserCreate.loaded()
 })
