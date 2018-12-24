@@ -16,30 +16,6 @@
       <form class="form" action="/users" enctype="multipart/form-data" method="POST">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-        <div class="row">
-          <div class="col-xl-3">
-            <div class="form-group">
-              <label>Avatar</label>
-              <input type="file" name="avatar" class="hidden">
-              <div class="avatar">
-                <img class="icon" src="/images/icon-upload.png" alt="" />
-              </div>
-              <small class="form-text text-muted text-center">Max 1MB</small>
-            </div>
-          </div>
-          <div class="col-xl-9">
-            <div class="form-group">
-              <label>Name</label>
-              <input type="text" name="name" class="form-control" placeholder="Ex: Mai Anh Kha" autocomplete="off">
-            </div>
-
-            <div class="form-group">
-              <label>Email</label>
-              <input type="email" name="email" class="form-control" placeholder="Ex: maianhkha.dev@gmail.com" autocomplete="off">
-            </div>
-          </div>
-        </div>
-
         <div class="form-group">
           <label>Role</label>
           <select name="role_id" class="form-control">
@@ -47,6 +23,16 @@
             <option value="{{ $role->id }}">{{ $role->name }}</option>
             @endforeach
           </select>
+        </div>
+
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" name="name" class="form-control" placeholder="Ex: Mai Anh Kha" autocomplete="off">
+        </div>
+
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" name="email" class="form-control" placeholder="Ex: maianhkha.dev@gmail.com" autocomplete="off">
         </div>
 
         <div class="form-group">

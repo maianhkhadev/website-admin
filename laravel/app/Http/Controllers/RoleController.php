@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Package;
 use App\Role;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class RoleController extends Controller
   */
   public function index()
   {
-    $roles = Role::orderBy('updated_at', 'DESC')->paginate(8);
+    $roles = Role::where('id', '!=', 1)->orderBy('updated_at', 'DESC')->paginate(8);
     return view('roles.index', ['roles' => $roles]);
   }
 
@@ -25,7 +26,7 @@ class RoleController extends Controller
   */
   public function create()
   {
-    //
+    return view('roles.create');
   }
 
   /**
@@ -36,7 +37,13 @@ class RoleController extends Controller
   */
   public function store(Request $request)
   {
-    //
+    $role = new Role();
+
+    $role->name = $request->input('name');
+
+    $role->save();
+
+    return redirect()->route('roles.index');
   }
 
   /**
@@ -58,7 +65,10 @@ class RoleController extends Controller
   */
   public function edit($id)
   {
-    //
+    $role = Role::find($id);
+    $packages = Package::all();
+
+    return view('roles.edit', ['role' => $role, 'packages' => $packages]);
   }
 
   /**
@@ -70,7 +80,16 @@ class RoleController extends Controller
   */
   public function update(Request $request, $id)
   {
-    //
+    $role = Role::find($id);
+
+    $role->name = $request->input('name');
+
+    $permissions = $request->input('permissions');
+    $role->permissions()->sync($permissions);
+
+    $role->save();
+
+    return redirect()->route('roles.index');
   }
 
   /**

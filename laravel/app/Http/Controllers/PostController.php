@@ -2,11 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+final class PostStatus
+{
+    const WAIT = 0;
+    const ACCEPTED = 1;
+    const DENIED = 2;
+}
 
 class PostController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -14,6 +24,8 @@ class PostController extends Controller
      */
     public function index()
     {
+        $this->authorize('posts.index');
+
         $posts = Post::orderBy('updated_at', 'DESC')->paginate(8);
         return view('posts.index', ['posts' => $posts]);
     }
@@ -25,7 +37,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        $categories = Category::all();
+
+        return view('posts.create', ['categories' => $categories]);
     }
 
     /**
@@ -36,24 +50,22 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->hasFile('blods')) {
-          $blods = $request->file('blods');
-          var_dump('1'); die;
-          // foreach($blods as $index=>$blod) {
-          //   $image_url = asset('/storage\/'.$blod->store('contents', 'public'));
-          //   $article->content = str_replace('{im-'.$index.'}', $image_url, $article->content);
-          // }
-        }
-
-        var_dump($request->input()); die;
-
         $post = new Post();
 
-        // $post->name = $request->input('name');
-        // $post->color = $request->input('color');
-        // $post->closed = false;
-        //
-        // $post->save();
+        $post->user_id = Auth::id();
+        $post->category_id = $request->input('category_id');
+        $post->title = $request->input('title');
+        $post->content = $request->input('content');
+
+        if ($request->hasFile('thumbnail')) {
+          $thumbnail = $request->file('thumbnail');
+          $thumbnail_url = asset('/storage\/'.$thumbnail->store('thumbnails', 'public'));
+          $post->thumbnail_url = $thumbnail_url;
+        }
+
+        $post->status = PostStatus::WAIT;
+
+        $post->save();
 
         // $article = new Article();
         // $article->title = $request->title;
@@ -87,7 +99,9 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = Post::find($id);
+
+        return view('posts.show', ['post' => $post]);
     }
 
     /**
@@ -98,7 +112,10 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::find($id);
+        $categories = Category::all();
+
+        return view('posts.edit', ['categories' => $categories, 'post' => $post]);
     }
 
     /**
@@ -110,7 +127,7 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return redirect()->route('posts.index');
     }
 
     /**

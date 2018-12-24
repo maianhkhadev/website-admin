@@ -16,7 +16,7 @@ class UserController extends Controller
   */
   public function index()
   {
-      $users = User::orderBy('updated_at', 'DESC')->paginate(8);
+      $users = User::where('id', '!=', 1)->orderBy('updated_at', 'DESC')->paginate(8);
       return view('users.index', ['users' => $users]);
   }
 
@@ -44,12 +44,6 @@ class UserController extends Controller
       $user->role_id = $request->input('role_id');
       $user->name = $request->input('name');
       $user->email = $request->input('email');
-
-      if ($request->hasFile('avatar')) {
-        $avatar = $request->file('avatar');
-        $avatar_url = asset('/storage\/'.$avatar->store('user_avatars', 'public'));
-        $user->avatar_url = $avatar_url;
-      }
 
       $password = $request->input('password');
       $user->password = Hash::make($password);

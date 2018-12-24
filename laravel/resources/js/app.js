@@ -1,4 +1,5 @@
 import PagePostCreate from './pages/posts.create'
+import PageProfileIndex from './pages/profile.index'
 import PageUserCreate from './pages/users.create'
 
 /**
@@ -20,6 +21,7 @@ window.Vue = require('vue');
  */
 
 Vue.component('quill', require('./components/quill.vue'));
+Vue.component('tag', require('./components/tag.vue'));
 
 Vue.component('com-album', require('./components/album.vue'));
 Vue.component('com-photo', require('./components/photo.vue'));
@@ -45,5 +47,6 @@ window.vm = app
 document.addEventListener('DOMContentLoaded', function() {
 
   PagePostCreate.loaded()
+  PageProfileIndex.loaded()
   PageUserCreate.loaded()
 })

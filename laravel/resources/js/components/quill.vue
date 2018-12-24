@@ -9,11 +9,17 @@
     window.Quill = require('quill/dist/quill.min.js')
     require('quill/dist/quill.core.js')
   }
+
   export default {
     data () {
       return {
         editor: null
       }
+    },
+    props: {
+      content: {
+        default: null
+      },
     },
     methods: {
       html: function () {
@@ -89,6 +95,10 @@
       self.editor.getModule('toolbar').addHandler('image', () => {
         self.selectLocalImage()
       })
+
+      if(self.content !== null) {
+        self.setContents(self.props.content)
+      }
     }
   }
 </script>

@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Module extends Model
+class Package extends Model
 {
     use SoftDeletes;
 
@@ -15,4 +15,9 @@ class Module extends Model
      * @var array
      */
     protected $dates = ['deleted_at'];
+
+    public function permissions()
+    {
+        return $this->hasMany('App\Permission');
+    }
 }

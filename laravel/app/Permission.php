@@ -15,4 +15,14 @@ class Permission extends Model
      * @var array
      */
     protected $dates = ['deleted_at'];
+
+    public function package()
+    {
+        return $this->belongsTo('App\Package');
+    }
+
+    public function roles()
+    {
+       return $this->belongsToMany('App\Role');
+    }
 }

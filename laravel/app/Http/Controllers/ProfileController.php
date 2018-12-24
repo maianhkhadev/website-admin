@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,7 +15,7 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        //
+        return view('profile.index', ['user' => Auth::user()]);
     }
 
     /**
@@ -56,8 +57,8 @@ class ProfileController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit()
-    {   
-        return view('profile.edit', ['profile' => Auth::user()]);
+    {
+
     }
 
     /**
@@ -67,9 +68,22 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $user = User::find(Auth::id());
+
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+
+        if ($request->hasFile('avatar')) {
+          $avatar = $request->file('avatar');
+          $avatar_url = asset('/storage\/'.$avatar->store('user_avatars', 'public'));
+          $user->avatar_url = $avatar_url;
+        }
+
+        $user->save();
+
+        return redirect()->route('weeks.index');
     }
 
     /**

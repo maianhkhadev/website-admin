@@ -55,6 +55,8 @@
                               </a>
 
                               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                  <a class="dropdown-item" href="{{ route('profile') }}">Profile</a>
+
                                   <a class="dropdown-item" href="{{ route('logout') }}"
                                      onclick="event.preventDefault();
                                                    document.getElementById('logout-form').submit();">
@@ -81,9 +83,6 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{{ route('users.index') }}">User</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ route('permissions.index') }}">Permission</a>
             </li>
 
             <li class="nav-item-header">Product - Post</li>

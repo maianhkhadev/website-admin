@@ -9927,6 +9927,16 @@ a {
   content: '-';
 }
 
+.form-check {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.form-check .form-check-label {
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 0.875rem;
+}
+
 .pagination {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -10155,7 +10165,28 @@ a {
   cursor: pointer;
 }
 
-.page-users-create .page-content .avatar {
+.page-profile-index .page-content .nav-tabs {
+  border-bottom: unset;
+  margin-bottom: 1.5rem;
+}
+
+.page-profile-index .page-content .nav-tabs .nav-item .nav-link {
+  color: #2a3140;
+  font-size: 1.125rem;
+  border: unset;
+  border-bottom: 0.125rem solid #ced4da;
+  padding: 0.5rem 1.25rem;
+}
+
+.page-profile-index .page-content .nav-tabs .nav-item .nav-link:hover {
+  color: #232a38;
+}
+
+.page-profile-index .page-content .nav-tabs .nav-item .nav-link.active {
+  border-bottom-color: #000000;
+}
+
+.page-profile-index .page-content .avatar {
   position: relative;
   background-color: #ffffff;
   background-position: center;
@@ -10164,9 +10195,10 @@ a {
   border: 0.125rem dashed #ced4da;
   border-radius: 0.5rem;
   padding-top: 100%;
+  margin-top: 1.5rem;
 }
 
-.page-users-create .page-content .avatar .icon {
+.page-profile-index .page-content .avatar .icon {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -10175,6 +10207,22 @@ a {
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   cursor: pointer;
+}
+
+.page-roles-edit section .section-title {
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.page-roles-edit fieldset {
+  margin-bottom: 1.5rem;
+}
+
+.page-roles-edit fieldset legend {
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.2;
+  margin-bottom: 0.25rem;
 }
 
 .com-album {

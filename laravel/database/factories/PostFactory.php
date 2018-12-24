@@ -12,6 +12,6 @@ $factory->define(App\Post::class, function (Faker $faker) {
     'title' => $faker->realText(75),
     'thumbnail_url' => $faker->unique()->imageUrl,
     'content' => $faker->realText,
-    'status' => $faker->randomDigitNotNull
+    'status' => '0'
   ];
 });

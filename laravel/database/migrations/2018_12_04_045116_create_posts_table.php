@@ -20,7 +20,7 @@ class CreatePostsTable extends Migration
             $table->text('title');
             $table->string('thumbnail_url');
             $table->text('content');
-            $table->unsignedInteger('status');
+            $table->enum('status', [0, 1, 2]);
             $table->timestamps();
             $table->softDeletes();
         });

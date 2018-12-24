@@ -6,7 +6,6 @@
       <time :datetime="data.updated_at">{{ data.updated_at }}</time>
     </span>
     <span class="com-cell">
-      <a class="" v-bind:href="`/roles/${data.id}`">Show</a>
       <a class="" v-bind:href="`/roles/${data.id}/edit`">Edit</a>
     </span>
   </div>

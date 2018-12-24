@@ -22,7 +22,7 @@
 
         <div class="form-group">
           <label>Title</label>
-          <textarea name="title" class="form-control" rows="2"></textarea>
+          <textarea name="title" class="form-control" rows="2">{{ $post->title }}</textarea>
         </div>
 
         <div class="row">
@@ -54,7 +54,6 @@
               <div class="thumbnail">
                 <img class="icon" src="/images/icon-upload.png" alt="" />
               </div>
-              <input type="file" name="thumbnail" class="hidden">
             </div>
           </div>
         </div>
@@ -62,12 +61,12 @@
         <div class="form-group">
           <label>Content</label>
           <input name="content" type="hidden">
-          <quill ref="quill" class="form-quill"></quill>
+          <quill ref="quill" class="form-quill" content="{{ $post->content }}"></quill>
         </div>
 
         <div class="form-group">
           <label>Tags</label>
-          <tag></tag>
+          <tag value=""></tag>
         </div>
 
         <a class="btn btn-secondary" href="{{ route('posts.index') }}">Cancel</a>
